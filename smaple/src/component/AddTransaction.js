@@ -1,26 +1,26 @@
 import React, { useState, useContext } from 'react';
-import { GlobalContext } from '../Context/GlobalState'; // Correct import for the context
+import { GlobalContext } from '../Context/GlobalState';
 
 const AddTransaction = () => {
     const [Text, SetText] = useState('');
     const [Amount, SetAmount] = useState(0);
 
-    // Use context to get the addTransaction function from GlobalContext
-    const { addTransaction } = useContext(GlobalContext);  // Correct use of useContext
+    const { addTransaction } = useContext(GlobalContext);
 
     const onSubmit = (e) => {
         e.preventDefault();
-        
+
         // Ensure that Text and Amount are filled out
         if (!Text || Amount === 0) {
             alert("Please enter a valid transaction.");
             return;
         }
 
+        // Create a new transaction object
         const newTransaction = {
-            id: Math.floor(Math.random() * 1000000000), // Unique id
+            id: Math.floor(Math.random() * 1000000000),  // Generate a random unique ID
             text: Text,
-            amount: +Amount, // Convert amount to number
+            amount: +Amount,  // Convert the amount to a number
         };
 
         // Call addTransaction function to add the new transaction
@@ -46,7 +46,7 @@ const AddTransaction = () => {
                 </div>
                 <div className="form-control">
                     <label htmlFor="amount">
-                        Amount<br />(negative - expense, positive - income)
+                        Amount<br />(negative for expense, positive for income)
                     </label>
                     <input
                         type="number"
